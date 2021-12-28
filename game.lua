@@ -37,10 +37,7 @@ function game.draw()
   player_height = player.height
 
   love.graphics.setColor(255 / 255, 255 / 255, 255 / 255)
-  --print(Game.selected_avatar)
-  --print(avatar_frames[Game.selected_avatar])
   love.graphics.draw(avatar_frames[Game.selected_avatar][math.floor(player.avatar_current_frame)], player.x, player.y, 0, scale, scale)
-  --love.graphics.draw(ball.image, ball.x, ball.y)
 end
 
 function game.update(dt)
