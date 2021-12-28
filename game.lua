@@ -20,7 +20,7 @@ function game.load()
 end
 
 function game.draw()
-  love.graphics.draw(background, 0, 0, 0, scale, scale)
+  love.graphics.draw(background, 0, 0, 0)
   player_width = player.width
   player_height = player.height
 
