@@ -6,6 +6,8 @@ character_selection = {
     assets = {}
 }
 
+timer_counter = 0
+
 function character_selection.load(assets)
     --Tem que ficar nessa ordem pra ficarem ordenados da mesma forma nos dois vetores
     assets.bear = love.graphics.newImage('img/players/bear.png')
@@ -52,4 +54,27 @@ function drawAvatars(index)
 end
 
 function character_selection.update(dt)
+
+    timer_counter = timer_counter + dt
+
+    if (timer_counter > 1) then
+
+        if love.keyboard.isDown("left") then
+            if (character_selection.selected_avatar == 1) then
+                character_selection.selected_avatar = 4
+            else
+                character_selection.selected_avatar = character_selection.selected_avatar-1    
+            end
+            timer_counter = 0
+        end
+
+        if love.keyboard.isDown("right") then
+            if (character_selection.selected_avatar == 4) then
+                character_selection.selected_avatar = 1
+            else
+                character_selection.selected_avatar = character_selection.selected_avatar+1    
+            end
+            timer_counter = 0
+        end
+    end
 end
