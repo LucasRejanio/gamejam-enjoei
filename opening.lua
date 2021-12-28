@@ -15,11 +15,11 @@ function opening.load()
 
   sound:setLooping(false)
 
-  local spriteW = opening.image:getWidth() / 21
-  local spriteH = opening.image:getHeight() / 2
+  local spriteW = opening.image:getWidth() / 15
+  local spriteH = opening.image:getHeight() / 3
 
   local g = anim8.newGrid(spriteW, spriteH, opening.image:getWidth(), opening.image:getHeight())
-  opening.animation = anim8.newAnimation(g('1-21',1, '1-21',2), 0.04, 'pauseAtEnd')
+  opening.animation = anim8.newAnimation(g('1-15',1, '1-15',2, '1-12',3), 0.04, 'pauseAtEnd')
 
   sound:play()
 end
