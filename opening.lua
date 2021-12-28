@@ -7,6 +7,8 @@ opening = {
 
 function opening.load(enjoeiAsset)
   local sound = love.audio.newSource('audio/pirilim.wav', 'static')
+  sound:setVolume(0.2)
+
   love.graphics.draw(enjoeiAsset.image, 70, 70)
 
   sound:setLooping(false)
@@ -14,7 +16,7 @@ function opening.load(enjoeiAsset)
   local spriteDimension = 915
   local g = anim8.newGrid(spriteDimension, spriteDimension, enjoeiAsset.image:getWidth(), enjoeiAsset.image:getHeight())
   opening.animation = anim8.newAnimation(g('1-21',1, '1-21',2), 0.04, 'pauseAtEnd')
-  
+
   sound:play()
 end
 
