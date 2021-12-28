@@ -31,7 +31,7 @@ function love.draw()
         if Game.scene == "menu" then
             menu.draw()
         elseif Game.scene == "character_selection" then
-            character_selection.draw()
+            character_selection.draw(Game)
         elseif Game.scene == "game" then
             game.draw()
         end

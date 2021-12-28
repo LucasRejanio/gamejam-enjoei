@@ -6,9 +6,13 @@ character_selection = {
     assets = {}
 }
 
+local font = nil
+
 timer_counter = 0
 
 function character_selection.load(assets)
+    font = love.graphics.newFont(32)
+
     --Tem que ficar nessa ordem pra ficarem ordenados da mesma forma nos dois vetores
     assets.bear = love.graphics.newImage('img/players/bear.png')
     assets.cat = love.graphics.newImage('img/players/cat.png')
@@ -18,8 +22,9 @@ function character_selection.load(assets)
     character_selection.assets = {assets.bear, assets.cat, assets.pineapple, assets.watermelon}
 end
 
-function character_selection.draw()
+function character_selection.draw(Game)
     drawAvatars(character_selection.selected_avatar)
+    drawButton(Game)
 end
 
 function drawAvatars(index)
@@ -57,7 +62,7 @@ function character_selection.update(dt)
 
     timer_counter = timer_counter + dt
 
-    if (timer_counter > 1) then
+    if (timer_counter > 0.3) then
 
         if love.keyboard.isDown("left") then
             if (character_selection.selected_avatar == 1) then
@@ -77,4 +82,66 @@ function character_selection.update(dt)
             timer_counter = 0
         end
     end
+end
+
+function drawButton(Game)
+    local ww = love.graphics.getWidth()
+    local wh = love.graphics.getHeight()
+
+    local button = {
+        width = (Game.width*Game.scale) / 3,
+        height = 64,
+        text = "Selecionar e Jogar",
+        last = false,
+        now = false
+    }
+    
+    button.last = button.now
+
+    local bx = (ww * 0.5) - (button.width * 0.5)
+    local by = (wh * 0.5) - (button.height * 0.5)
+
+    local button_color = {1.0, 0.83, 0.87, 1}
+
+    local mx, my = love.mouse.getPosition() 
+
+    local hot = mx > bx and mx < bx + button.width and
+                my > by and my < by + button.height
+
+    if hot then
+      button_color = {1, 1, 1, 1}
+    end
+
+    button.now = love.mouse.isDown(1)
+    if hot and button.now and not button.last then
+      Game.scene = "game"
+    end
+
+    love.graphics.setColor(unpack(button_color))
+    love.graphics.rectangle(
+      "fill",
+      bx,
+      by,
+      button.width,
+      button.height
+    )
+    love.graphics.setColor(0.35, 0.2, 0.2)
+    love.graphics.rectangle(
+      "line",
+      bx,
+      by,
+      button.width,
+      button.height
+    )
+
+    local textW = font:getWidth(button.text)
+    local textH = font:getHeight(button.text)
+
+    love.graphics.setColor(0.35, 0.2, 0.2)
+    love.graphics.print(
+      button.text,
+      font,
+      (ww * 0.5) - textW * 0.5,
+      by + (button.height * 0.5) - (textH * 0.5)
+    )
 end
