@@ -34,9 +34,5 @@ function opening.update(dt)
 end
 
 function opening.draw()
-  local ww = love.graphics.getWidth()
-  local wh = love.graphics.getHeight()
-  local animation_size = 915
-
-  opening.animation:draw(opening.image, 176, 128, nil, 0.5) -- corrigir posicionamento da abertura para ficar centralizado
+  opening.animation:draw(opening.image, 370, 150, nil, 0.5)
 end
