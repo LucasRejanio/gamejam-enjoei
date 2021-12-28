@@ -1,25 +1,28 @@
 game = {}
 
+player = {
+  height = 32,
+  width = 32
+}
+
 function game.load()
   background = love.graphics.newImage("img/backgrounds/background.png")
-  player = love.graphics.newImage("img/players/bearSprite/bearSprite1.png")
+  player.image = love.graphics.newImage("img/players/bearSprite/bearSprite1.png")
+
+  player.x = 60
+  player.y = love.graphics.getHeight() - player.height - 55
 end
 
 function game.draw()
   love.graphics.draw(background, 0, 0)
-end
+  player_width = player.width
+  player_height = player.height
 
-function love.draw()
-  love.graphics.scale(game.scale, game.scale)
-
-  love.graphics.setColor(90 / 255, 215 / 255, 250 / 255)
-  love.graphics.rectangle('fill', 3, 0, game.width, game.height)
-
+  
   love.graphics.setColor(255 / 255, 255 / 255, 255 / 255)
-  -- love.graphics.rectangle('fill', player.x, player.y, player.width, player.height)
+  love.graphics.rectangle('fill', player.x, player.y, player_width, player_height)
   love.graphics.draw(player.image, player.x, player.y)
-  love.graphics.draw(ball.image, ball.x, ball.y)
-
+  --love.graphics.draw(ball.image, ball.x, ball.y)
 end
 
 function love.update()

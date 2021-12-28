@@ -11,15 +11,15 @@ Game = {
 }
 
 function love.load()
-    --Assets.bear.image = love.graphics.newImage("img/players/bear.jpg")
+    love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
 
     opening.load()
     menu.load(Game)
     game.load()
-    love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
 end
 
 function love.draw()
+    love.graphics.scale(game.scale, game.scale)
     love.graphics.setBackgroundColor(255, 255, 255)
 
     if opening.is_opening then
