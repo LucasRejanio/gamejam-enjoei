@@ -1,40 +1,38 @@
-function DrawCharacterSellection()
+function drawCharacterSellection(assets)
     local CharacterSize = {
         width = 32,
         height = 32
     }
 
-    DrawBear(CharacterSize)
-    DrawCat(CharacterSize)
-    DrawWaterMellon(CharacterSize)
-    DrawPineApple(CharacterSize)
+    drawBear(CharacterSize, assets.bear)
+    drawCat(CharacterSize)
+    drawWaterMellon(CharacterSize)
+    drawPineApple(CharacterSize)
+    loadButtons()
 end
 
-function DrawBear(charSize)
-    blackRGB = { 0, 0, 0 }
+function drawBear(charSize, bearAsset)
+    x = 70; y = 70
+    bearAsset.image:setFilter("nearest", "nearest")
 
-    love.graphics.setColor(blackRGB)
-    love.graphics.newImage("img/players/bear.jpg")
+    love.graphics.draw(bearAsset.image, x, y)
 end
 
-function DrawCat(charSize)
+function drawCat(charSize)
     -- love.graphics.setBackgroundColor( red, green, blue, alpha )
     love.graphics.rectangle("fill", 0, 0, charSize.width, charSize.height)
 end
 
-function DrawWaterMellon(charSize)
+function drawWaterMellon(charSize)
     -- love.graphics.setBackgroundColor( red, green, blue, alpha )
     love.graphics.rectangle("fill", 0, 0, charSize.width, charSize.height)
 end
 
-function DrawPineApple(charSize)
+function drawPineApple(charSize)
     -- love.graphics.setBackgroundColor( red, green, blue, alpha )
     love.graphics.rectangle("fill", 0, 0, charSize.width, charSize.height)
 end
 
-function DrawBackground(width, height)
-    local whiteRGB = { 1, 1, 1 }
-
-    love.graphics.setColor(whiteRGB)
-    love.graphics.rectangle("fill", 0, 0, width, height)
+function loadButtons()
+    
 end
