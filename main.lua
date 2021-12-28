@@ -10,11 +10,14 @@ Game = {
     scene = "menu"
 }
 
+assets = {}
+
 function love.load()
     love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
 
     opening.load()
     menu.load(Game)
+    character_selection.load(assets)
     game.load()
 end
 
@@ -36,7 +39,17 @@ function love.draw()
 end
 
 function love.update(dt)
-    opening.update(dt)
+    if opening.is_opening then
+        opening.update(dt)
+    else
+        if Game.scene == "menu" then
+            menu.update(dt)
+        elseif Game.scene == "character_selection" then
+            character_selection.update(dt)
+        elseif Game.scene == "game" then
+            game.update(dt)
+        end
+    end
 end
 
 function drawBackground(width, height)

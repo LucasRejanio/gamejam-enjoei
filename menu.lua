@@ -102,3 +102,7 @@ function menu.draw()
     cursor_y = cursor_y + (button_height + margin)
   end
 end
+
+function menu.update(dt)
+
+end
