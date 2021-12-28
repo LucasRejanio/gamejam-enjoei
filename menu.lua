@@ -13,13 +13,14 @@ function newButton(text, fn)
   }
 end
 
-function menu.load()
+function menu.load(Game)
   font = love.graphics.newFont(32)
 
   table.insert(buttons, newButton(
     "Jogar",
     function()
       print("Iniciando Jogo")
+      Game.scene = "character_selection"
     end
   ))
   table.insert(buttons, newButton(

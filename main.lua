@@ -14,7 +14,7 @@ function love.load()
     --Assets.bear.image = love.graphics.newImage("img/players/bear.jpg")
 
     opening.load()
-    menu.load()
+    menu.load(Game)
     game.load()
     love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
 end
