@@ -20,7 +20,7 @@ function menu.load(Game)
     "Jogar",
     function()
       print("Iniciando Jogo")
-      Game.scene = "game" --depois voltar para character_selection
+      Game.scene = "character_selection" --depois voltar para character_selection
     end
   ))
   table.insert(buttons, newButton(
