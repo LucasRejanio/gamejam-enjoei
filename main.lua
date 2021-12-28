@@ -7,7 +7,8 @@ Game = {
     width = 352,
     height = 256,
     scale = 3.5,
-    scene = "menu"
+    scene = "menu",
+    selected_avatar = 1
 }
 
 assets = {}

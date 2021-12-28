@@ -12,14 +12,15 @@ timer_counter = 0
 
 function character_selection.load(assets)
     font = love.graphics.newFont(32)
+    --***IMPORTANTE***: Tem que ficar nessa ordem pra ficarem ordenados da mesma forma nos dois vetores
+    bear = love.graphics.newImage('img/players/bear.png')
+    cat = love.graphics.newImage('img/players/cat.png')
+    pineapple = love.graphics.newImage('img/players/pineapple.png')
+    watermelon = love.graphics.newImage('img/players/watermelon.png')
 
-    --Tem que ficar nessa ordem pra ficarem ordenados da mesma forma nos dois vetores
-    assets.bear = love.graphics.newImage('img/players/bear.png')
-    assets.cat = love.graphics.newImage('img/players/cat.png')
-    assets.pineapple = love.graphics.newImage('img/players/pineapple.png')
-    assets.watermelon = love.graphics.newImage('img/players/watermelon.png')
-
-    character_selection.assets = {assets.bear, assets.cat, assets.pineapple, assets.watermelon}
+    character_selection.assets = {bear, cat, pineapple, watermelon}
+    assets = character_selection.assets
+    Game.avatars = character_selection.avatars
 end
 
 function character_selection.draw(Game)
