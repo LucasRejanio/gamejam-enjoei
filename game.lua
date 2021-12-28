@@ -14,11 +14,15 @@ timer_counter = 0
 
 function game.load()
 
-  frames = {}
+  avatar_frames = {{}, {}, {}, {}}
 
-  for i=1, 6 do
-    name = Game.avatars[Game.selected_avatar] .. "Sprite"
-    table.insert(frames, love.graphics.newImage("img/players/" .. name .. "/" .. name .. i .. ".png"))
+  for i=1, 4 do
+    avatar = Game.avatars[i]
+    sprite_name = avatar .. "Sprite"
+
+    for index=1, 6 do
+      table.insert(avatar_frames[i], love.graphics.newImage("img/players/" .. sprite_name .. "/" .. sprite_name .. index .. ".png"))
+    end
   end
 
   background = love.graphics.newImage("img/backgrounds/background.png")
@@ -33,7 +37,9 @@ function game.draw()
   player_height = player.height
 
   love.graphics.setColor(255 / 255, 255 / 255, 255 / 255)
-  love.graphics.draw(frames[math.floor(player.avatar_current_frame)], player.x, player.y, 0, scale, scale)
+  --print(Game.selected_avatar)
+  --print(avatar_frames[Game.selected_avatar])
+  love.graphics.draw(avatar_frames[Game.selected_avatar][math.floor(player.avatar_current_frame)], player.x, player.y, 0, scale, scale)
   --love.graphics.draw(ball.image, ball.x, ball.y)
 end
 

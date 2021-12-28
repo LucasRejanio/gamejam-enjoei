@@ -116,6 +116,8 @@ function drawButton(Game)
     button.now = love.mouse.isDown(1)
     if hot and button.now and not button.last then
       Game.scene = "game"
+      Game.selected_avatar = character_selection.selected_avatar
+      print("selected avatar: " .. character_selection.selected_avatar)
     end
 
     love.graphics.setColor(unpack(button_color))
