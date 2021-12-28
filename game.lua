@@ -9,6 +9,8 @@ player = {
   vely = 1
 }
 
+timer_counter = 0
+
 function game.load()
   background = love.graphics.newImage("img/backgrounds/background.png")
   player.image = love.graphics.newImage("img/players/bearSprite/bearSprite1.png")
@@ -30,15 +32,17 @@ end
 function game.update(dt)
   maxY = love.graphics.getHeight() - player.height - (55 * scale) 
 
-  if love.keyboard.isDown("space") then
-    player.vely = -7
+  if (love.keyboard.isDown("space") and timer_counter < 0.3) then
+    player.vely = -18
+    timer_counter = timer_counter + dt
   end
 
-  player.vely = player.vely + 0.1
+  player.vely = player.vely + 1
   player.y = player.y + player.vely
 
   if player.y > maxY then
     player.y = maxY
+    timer_counter = 0
   end
 
   -- if player.x < 0 then
