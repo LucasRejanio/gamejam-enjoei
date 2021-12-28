@@ -14,7 +14,7 @@ function DrawBear(charSize)
     blackRGB = { 0, 0, 0 }
 
     love.graphics.setColor(blackRGB)
-    love.graphics.NewImage("")
+    love.graphics.newImage("img/players/bear.jpg")
 end
 
 function DrawCat(charSize)
