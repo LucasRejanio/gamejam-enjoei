@@ -1,4 +1,6 @@
-function drawCharacterSellection(assets)
+character_selection = {}
+
+function character_selection.draw(assets)
     local CharacterSize = {
         width = 32,
         height = 32

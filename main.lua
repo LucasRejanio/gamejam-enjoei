@@ -1,40 +1,37 @@
 require("opening")
 require("menu")
-require("character-sellection")
+require("game")
+require("character_selection")
 
 Game = {
     width = 352,
     height = 256,
     scale = 3.5,
-    scene = ""
-}
-
-Assets = {
-    bear = {}
+    scene = "menu"
 }
 
 function love.load()
-    Assets.bear.image = love.graphics.newImage("img/players/bear.jpg")
+    --Assets.bear.image = love.graphics.newImage("img/players/bear.jpg")
 
     opening.load()
     menu.load()
+    game.load()
     love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
-
-    Game.scene = "character-sellection"
 end
 
 function love.draw()
     love.graphics.setBackgroundColor(255, 255, 255)
 
-    if opening.intro_counter < opening.intro_display_seconds then
+    if opening.is_opening then
         opening.draw()
     else
-        menu.draw()
-        
-        --DrawBackground(Game.width * Game.scale, Game.height * Game.scale)
-        
-        --Game.scene = "character-sellection"
-        --DrawCharacterSellection()
+        if Game.scene == "menu" then
+            menu.draw()
+        elseif Game.scene == "character_selection" then
+            character_selection.draw()
+        elseif Game.scene == "game" then
+            game.draw()
+        end
     end
 end
 
