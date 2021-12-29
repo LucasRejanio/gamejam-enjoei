@@ -18,7 +18,7 @@ goal_display_seconds = 2
 
 function achievements.check_for_achievement(score)
   for i, goal in ipairs(goals) do
-    if score == 1 then
+    if score == 80 then
       Game.scene = "ending"
     end
 
