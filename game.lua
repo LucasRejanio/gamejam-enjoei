@@ -49,7 +49,9 @@ end
 function game.draw()
   sx = love.graphics:getWidth() / background:getWidth()
   sy = love.graphics:getHeight() / background:getHeight()
+  bg_scroll:setViewport(-bg_position * 2.3, 0, background:getWidth(), background:getHeight())
   love.graphics.draw(background, bg_scroll, 0, 0, 0, sx, sy)
+  
   player_width = player.width
   player_height = player.height
 
