@@ -42,7 +42,7 @@ function game.load()
       table.insert(avatar_frames[i], love.graphics.newImage("img/players/" .. sprite_name .. "/" .. sprite_name .. index .. ".png"))
     end
   end
-  
+
   year_font = love.graphics.newFont(32)
   score_font = love.graphics.newFont(24)
 
@@ -68,7 +68,7 @@ function game.draw()
   sy = love.graphics:getHeight() / background:getHeight()
   bg_scroll:setViewport(-bg_position * background_speed, 0, background:getWidth(), background:getHeight())
   love.graphics.draw(background, bg_scroll, 0, 0, 0, sx, sy)
-  
+
   player_width = player.width
   player_height = player.height
 
@@ -114,7 +114,7 @@ function game.update(dt)
 
   collectables.update(dt, player)
   achievements.update(dt)
-  
+
   check_background_speed()
 
   bg_position = bg_position - 1
@@ -128,7 +128,7 @@ function game.update(dt)
     player.avatar_current_frame = 1
   end
 
-  maxY = love.graphics.getHeight() - player.height - (55 * scale) 
+  maxY = love.graphics.getHeight() - player.height - (55 * scale)
 
   if (love.keyboard.isDown("space") and timer_counter < 0.3) then
     player.vely = -18
@@ -149,11 +149,11 @@ function game.update(dt)
     end
   end
 
-  
+
   --Audio
   if playing_music == false then
     game.song:setLooping(true)
-    game.song:setVolume(0.3)
+    game.song:setVolume(0.2)
     game.song:play()
     playing_music = true
   end

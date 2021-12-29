@@ -7,6 +7,7 @@ timer = 0
 function game_over.load()
   text_font = love.graphics.newFont(50)
   button_font = love.graphics.newFont(32)
+  endgame = love.graphics.newImage("img/ending/endgame.png")
 end
 
 function game_over.draw()
@@ -18,17 +19,17 @@ function game_over.draw()
   end
 
   old_font = love.graphics.getFont()
-  
+
   love.graphics.setFont(text_font)
 
   game_over_text = "GAME OVER!"
   score_text =  "pontuação: " .. game.current_score
   highscore_text = "highscore: " .. Game.highscore
 
-  love.graphics.print(game_over_text, (ww * 0.5) - (text_font:getWidth(game_over_text) * 0.5), 120)
+  love.graphics.draw(endgame, ww / 4.8, 25)
   love.graphics.print(score_text, (ww * 0.5) - (text_font:getWidth(score_text) * 0.5) , 200)
   love.graphics.print(highscore_text, (ww * 0.5) - (text_font:getWidth(highscore_text) * 0.5), 280)
-  
+
   love.graphics.setFont(button_font)
 
   local button = newButton(
@@ -51,7 +52,7 @@ function game_over.draw()
 
   local button_color = {1.0, 0.83, 0.87, 1}
 
-  local mx, my = love.mouse.getPosition() 
+  local mx, my = love.mouse.getPosition()
 
   local hot = mx > bx and mx < bx + button_width and
             my > by and my < by + button_height
