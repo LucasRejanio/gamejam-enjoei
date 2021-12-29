@@ -18,7 +18,7 @@ function collectables.load()
   blog_image = love.graphics.newImage("img/objects/2009-blog.png")
   website_image = love.graphics.newImage("img/objects/2012-website.png")
   argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
-  argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
+  enjupro_image = love.graphics.newImage("img/objects/2018-enjupro.png")
   maneki_neeko_image = love.graphics.newImage("img/objects/maneki_neeko.png")
   android_image = love.graphics.newImage("img/objects/2015-android.png")
   iphone_image = love.graphics.newImage("img/objects/2015-iphone.png")
@@ -46,6 +46,8 @@ function collectables.load()
   collectables["website"] = make_collectable(website_image)
 
   collectables["argentina"] = make_collectable(argentina_image)
+  
+  collectables["enjupro"] = make_collectable(enjupro_image)
 
   collectables["android"] = make_collectable(android_image)
   collectables["iphone"] = make_collectable(iphone_image)
@@ -106,7 +108,7 @@ function collectables.draw()
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
     elseif collectable.image == argentina_image then
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.7, 0.8)
-    elseif collectable.image == blog_image or collectable.image == website_image then 
+    elseif collectable.image == blog_image or collectable.image == website_image or collectable.image == enjupro_image then 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.4, 0.4)
     else 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5) 
@@ -153,7 +155,7 @@ function spawn_collectable(collectable_type)
 end
 
 function random_height()
-  possible_heights = {100, 200, 300, 400, 500}
+  possible_heights = {100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600}
   return possible_heights[ math.random( #possible_heights ) ]
 end
 
@@ -247,6 +249,8 @@ function set_collectable_types(year)
     table.insert(collectable_types, "wphone")
   elseif year == 2017 then
     table.insert(collectable_types, "argentina")
+  elseif year == 2018 then
+    table.insert(collectable_types, "enjupro")
   elseif year == 2020 then
     table.insert(collectable_types, "ipo")
   elseif year == 2021 then
