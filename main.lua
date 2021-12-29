@@ -15,6 +15,7 @@ assets = {}
 
 function love.load()
     love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
+    love.window.setTitle("enjornada")
 
     opening.load()
     menu.load(Game)

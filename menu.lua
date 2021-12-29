@@ -1,6 +1,7 @@
 menu = {}
 
 local buttons = {}
+local devs = {}
 local font = nil
 
 function newButton(text, fn)
@@ -15,6 +16,16 @@ end
 
 function menu.load(Game)
   font = love.graphics.newFont(32)
+  menu.title = love.graphics.newImage('img/opening/enjornada.png')
+  menu.developedby = love.graphics.newImage('img/opening/developedby.png')
+  devs.bernardo = love.graphics.newImage('img/opening/developers/bernardo.png')
+  devs.claudia = love.graphics.newImage('img/opening/developers/claudia.png')
+  devs.gabs = love.graphics.newImage('img/opening/developers/gabs.png')
+  devs.jordana = love.graphics.newImage('img/opening/developers/jordana.png')
+  devs.liam = love.graphics.newImage('img/opening/developers/liam.png')
+  devs.marcos = love.graphics.newImage('img/opening/developers/marcos.png')
+  devs.rejanio = love.graphics.newImage('img/opening/developers/rejanio.png')
+  devs.venancio = love.graphics.newImage('img/opening/developers/venancio.png')
 
   table.insert(buttons, newButton(
     "Jogar",
@@ -24,9 +35,10 @@ function menu.load(Game)
     end
   ))
   table.insert(buttons, newButton(
-    "Conquistas",
+    "Instruções",
     function()
-      print("Exibindo Conquistas")
+      print("Desenvolver how to")
+      -- Game.scene = "character_selection"
     end
   ))
   table.insert(buttons, newButton(
@@ -49,6 +61,9 @@ function menu.draw()
   local total_height = (button_height + margin) * #buttons
   local cursor_y = 0
 
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.draw(menu.title, button_width, 100)
+
   for i, button in ipairs(buttons) do
     button.last = button.now
 
@@ -57,7 +72,7 @@ function menu.draw()
 
     local button_color = {1.0, 0.83, 0.87, 1}
 
-    local mx, my = love.mouse.getPosition() 
+    local mx, my = love.mouse.getPosition()
 
     local hot = mx > bx and mx < bx + button_width and
                 my > by and my < by + button_height
@@ -101,6 +116,18 @@ function menu.draw()
 
     cursor_y = cursor_y + (button_height + margin)
   end
+
+  love.graphics.setColor(1, 1, 1)
+
+  love.graphics.draw(menu.developedby, button_width, 650)
+  love.graphics.draw(devs.bernardo, 0, 770)
+  love.graphics.draw(devs.claudia, 154, 770)
+  love.graphics.draw(devs.gabs, 308, 770)
+  love.graphics.draw(devs.jordana, 482, 770)
+  love.graphics.draw(devs.liam, 636, 770)
+  love.graphics.draw(devs.marcos, 790, 770)
+  love.graphics.draw(devs.venancio, 955, 770)
+  love.graphics.draw(devs.rejanio, 1106, 770)
 end
 
 function menu.update(dt)
