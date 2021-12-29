@@ -1,5 +1,5 @@
 # gamejam-enjoei
-Hackathon 2021 enjoei.
+Hackathon gamejam enjoei 2021.
 ![enjornada](https://user-images.githubusercontent.com/52427398/147696686-9a62e943-9a83-4183-9e9b-d95b423ec02c.png)
 
 ## Objetivo 🚀
