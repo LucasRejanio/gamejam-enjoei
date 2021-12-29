@@ -14,6 +14,11 @@ function cat_bad_ending.draw()
   love.graphics.setColor(1, 1, 1)
   love.graphics.draw(assets.moises, 1047, Game.height * Game.scale - 235)
   love.graphics.draw(cat_bad_ending.image, Game.width + 20, 180)
+  
+  if game.song:isPlaying() then
+    game.song:stop()
+  end
+
   songs.game_over:setLooping(true)
   songs.game_over:setVolume(0.3)
   songs.game_over:play()

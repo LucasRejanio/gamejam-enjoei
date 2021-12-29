@@ -62,6 +62,7 @@ end
 function character_selection.update(dt)
     if songs.game_over:isPlaying() then
         songs.game_over:stop()
+        playing_music = false
     end
 
     timer_counter = timer_counter + dt

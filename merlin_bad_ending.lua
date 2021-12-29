@@ -3,9 +3,7 @@ merlin_timer = 0
 
 function merlin_bad_ending.load()
   merlin_font = love.graphics.newFont(30)
---   merlin_bad_ending.bulldog = love.graphics.newImage('img/.png')
---   merlin_bad_ending.poodle = love.graphics.newImage('img/.png')
---   merlin_bad_ending.audio = love.audio.newSource("audio/.mp3", "static")
+  merlin_bad_ending.image = love.graphics.newImage('img/ending/merlin_game_over.png')
 end
 
 function merlin_bad_ending.draw()
@@ -15,8 +13,12 @@ function merlin_bad_ending.draw()
   love.graphics.print(text, 300, 30)
   love.graphics.setColor(1, 1, 1)
   love.graphics.draw(assets.moises, 1047, Game.height * Game.scale - 235)
---   love.graphics.draw(game_over.poodle, 1047, Game.height * Game.scale - 235)
---   love.graphics.draw(game_over.bulldog, 1047, Game.height * Game.scale - 235)
+  love.graphics.draw(merlin_bad_ending.image, 1047, Game.height * Game.scale - 235)
+  
+  if game.song:isPlaying() then
+    game.song:stop()
+  end
+
   songs.game_over:setLooping(true)
   songs.game_over:setVolume(0.3)
   songs.game_over:play()
