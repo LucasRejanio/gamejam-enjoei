@@ -1,9 +1,11 @@
 require "collectables"
 
+starting_lives = 3
+
 game = {
   current_score = 0,
-  current_lives = 3,
-  song = love.audio.newSource("audio/game_sound.mp3", "static"),
+  current_lives = starting_lives,
+  song = love.audio.newSource("audio/game_sound.mp3", "static")
 }
 
 scale = 3.5
@@ -20,6 +22,8 @@ player = {
 
 timer_counter = 0
 playing_music = false
+
+new_game = true
 
 function game.load()
   collectables.load()
@@ -65,6 +69,14 @@ end
 spacePressed = false
 
 function game.update(dt)
+  if new_game then
+    game.current_lives = starting_lives
+    game.current_score = 0
+    collectables.reset_collectables()
+
+    new_game = false
+  end
+
   collectables.update(dt, player)
   
   bg_position = bg_position - 1

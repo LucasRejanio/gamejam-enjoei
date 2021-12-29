@@ -1,9 +1,7 @@
 time_between_spawns = 3
 spawn_timer = 0
 
-scale = 3.5
-
-collectable_types = {"bug", "dindin"}
+collectable_types = {"bug", "dindin", "argentina"}
 --collectable_types = {"bug", "dindin", "bolsa", "brilhou", "celular", "argentina", "cupom"}
 collectables = {}
 onscreen_collectables = {}
@@ -13,33 +11,28 @@ collectable_speed = 2
 function collectables.load()
   bug_image = love.graphics.newImage("img/objects/bug.png")
   dindin_image = love.graphics.newImage("img/objects/cash.png")
+  argentina_image = love.graphics.newImage("img/objects/argentina.png")
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
 
   collectables["bug"] = {
     image = bug_image,
-    cw = bug_image:getWidth() * scale,
-    ch = bug_image:getHeight() * scale,
-    fn = function()
-      game.current_lives = game.current_lives - 1
-      play_bug_sfx()
-      print("pegou um bug!")
-      
-      if game.current_lives == 0 then
-        Game.scene = "game_over"
-      end
-    end
+    cw = bug_image:getWidth(),
+    ch = bug_image:getHeight(),
+    fn = bug_fn
   }
   collectables["dindin"] = {
     image = dindin_image,
-    cw = dindin_image:getWidth() * scale,
-    ch = dindin_image:getHeight() * scale,
-    fn = function()
-      score_up()
-      play_collectable_sfx()
-      print("pegou um dindin!")
-    end
+    cw = dindin_image:getWidth(),
+    ch = dindin_image:getHeight(),
+    fn = collectable_fn
+  }
+  collectables["argentina"] = {
+    image = argentina_image,
+    cw = argentina_image:getWidth(),
+    ch = argentina_image:getHeight(),
+    fn = collectable_fn
   }
 end
 
@@ -53,7 +46,6 @@ function collectables.update(dt, player)
   end
 
   for i, collectable in ipairs(onscreen_collectables) do
-    print(i .. "   " .. onscreen_collectables[1].width)
     collectable.x = collectable.x - collectable_speed
 
     if check_collision(collectable, player) then
@@ -61,7 +53,7 @@ function collectables.update(dt, player)
       table.remove(onscreen_collectables, i)
     end
 
-    if collectable.x + (collectable.width * scale) < 0 then
+    if collectable.x + (collectable.width) < 0 then
       table.remove(onscreen_collectables, i)
     end
   end
@@ -69,8 +61,12 @@ end
 
 function collectables.draw()
   for i, collectable in ipairs(onscreen_collectables) do
-    love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, scale, scale)
+    love.graphics.draw(collectable.image, collectable.x, collectable.y, 0)
   end
+end
+
+function collectables.reset_collectables()
+  onscreen_collectables = {}
 end
 
 function random_type()
@@ -95,7 +91,7 @@ function spawn_collectable(collectable_type)
 end
 
 function random_height()
-  possible_heights = {100, 200, 300, 400}
+  possible_heights = {100, 200, 300, 400, 500}
   return possible_heights[ math.random( #possible_heights ) ]
 end
 
@@ -119,6 +115,21 @@ function check_collision(a, b)
   return true
 end
 
+function bug_fn()
+  game.current_lives = game.current_lives - 1
+  play_bug_sfx()
+  
+  if game.current_lives <= 0 then
+    Game.scene = "game_over"
+  end
+end
+
+function collectable_fn()
+  game.current_score = game.current_score + 1
+  play_collectable_sfx()
+  print("pegou um dindin!")
+end
+
 function play_bug_sfx()
   bug_sfx:setLooping(false)
   bug_sfx:setVolume(0.4)
@@ -129,8 +140,4 @@ function play_collectable_sfx()
   collectable_sfx:setLooping(false)
   collectable_sfx:setVolume(0.4)
   collectable_sfx:play()
-end
-
-function score_up()
-  game.current_score = game.current_score + 1
 end
