@@ -2,6 +2,7 @@ require("opening")
 require("menu")
 require("game")
 require("character_selection")
+require("game_over")
 
 Game = {
     width = 352,
@@ -35,6 +36,8 @@ function love.draw()
             character_selection.draw(Game)
         elseif Game.scene == "game" then
             game.draw()
+        elseif Game.scene == "game_over" then
+            game_over.draw()
         end
     end
 end
@@ -49,13 +52,8 @@ function love.update(dt)
             character_selection.update(dt)
         elseif Game.scene == "game" then
             game.update(dt)
+        elseif Game.scene == "game_over" then
+            game_over.update(dt)
         end
     end
-end
-
-function drawBackground(width, height)
-    local whiteRGB = { 1, 1, 1 }
-
-    love.graphics.setColor(whiteRGB)
-    love.graphics.rectangle("fill", 0, 0, width, height)
 end
