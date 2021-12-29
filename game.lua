@@ -1,10 +1,12 @@
 require "collectables"
+require "achievements"
 
 starting_lives = 3
 
 game = {
   current_score = 0,
   current_lives = starting_lives,
+  current_year = 2009,
   song = love.audio.newSource("audio/game_sound.mp3", "static")
 }
 
@@ -27,6 +29,7 @@ new_game = true
 
 function game.load()
   collectables.load()
+  achievements.load()
 
   avatar_frames = {{}, {}, {}, {}}
 
@@ -38,6 +41,9 @@ function game.load()
       table.insert(avatar_frames[i], love.graphics.newImage("img/players/" .. sprite_name .. "/" .. sprite_name .. index .. ".png"))
     end
   end
+  
+  year_font = love.graphics.newFont(32)
+  score_font = love.graphics.newFont(24)
 
   background = love.graphics.newImage("img/backgrounds/bg-yellow.png")
   background:setWrap('repeat', 'clampzero')
@@ -47,6 +53,8 @@ function game.load()
 end
 
 function game.draw()
+  ww = love.graphics:getWidth()
+
   sx = love.graphics:getWidth() / background:getWidth()
   sy = love.graphics:getHeight() / background:getHeight()
   bg_scroll:setViewport(-bg_position * 2.3, 0, background:getWidth(), background:getHeight())
@@ -58,14 +66,26 @@ function game.draw()
   love.graphics.setColor(255 / 255, 255 / 255, 255 / 255)
   love.graphics.draw(avatar_frames[Game.selected_avatar][math.floor(player.avatar_current_frame)], player.x, player.y, 0, scale, scale)
 
+  old_font = love.graphics.getFont()
+
   --Score e Pontuação
+  love.graphics.setFont(score_font)
   love.graphics.setColor(0,0,0)
-  love.graphics.print("pontuação: " .. game.current_score,0,90,0,2,2)
-  love.graphics.print("vidas: " .. game.current_lives,0,110,0,2,2)
+  love.graphics.print("pontuação: " .. game.current_score, 10, 90)
+  love.graphics.print("vidas: " .. game.current_lives, 10, 120)
+
+  --Ano
+  love.graphics.setFont(year_font)
+  love.graphics.print(game.current_year, ww - year_font:getWidth(game.current_year) - 20, 100)
   love.graphics.setColor(1,1,1)
+
+  love.graphics.setFont(old_font)
 
   --Coletáveis
   collectables.draw()
+
+  --Conquistas
+  achievements.draw()
 end
 
 spacePressed = false
@@ -74,12 +94,14 @@ function game.update(dt)
   if new_game then
     game.current_lives = starting_lives
     game.current_score = 0
+    game.current_year = 2009
     collectables.reset_collectables()
 
     new_game = false
   end
 
   collectables.update(dt, player)
+  achievements.update(dt)
   
   bg_position = bg_position - 1
   bg_w = background:getWidth()

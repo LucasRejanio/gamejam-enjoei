@@ -1,4 +1,6 @@
-game_over = {}
+game_over = {
+  moises = love.graphics.newImage('img/ending/moises.png')
+}
 
 timer = 0
 
@@ -92,6 +94,9 @@ function game_over.draw()
   )
 
   love.graphics.setFont(old_font)
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.draw(game_over.moises, 1047, Game.height * Game.scale - 235)
+  love.graphics.setColor(0.35, 0.2, 0.2)
 end
 
 function game_over.update(dt)

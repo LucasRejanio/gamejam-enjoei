@@ -126,6 +126,7 @@ end
 
 function collectable_fn()
   game.current_score = game.current_score + 1
+  achievements.check_for_achievement(game.current_score)
   play_collectable_sfx()
   print("pegou um dindin!")
 end
