@@ -51,6 +51,12 @@ function game.load()
 
   background_speed = 2.3
 
+  bg_position = bg_position - 1
+  bg_w = background:getWidth()
+  bg_h = background:getHeight()
+
+  bg_scroll = love.graphics.newQuad(-bg_position, -1, bg_w, bg_h, bg_w, bg_h)
+
   player.x = 0
   player.y = love.graphics.getHeight() - player.height - (55 * scale)
 end
