@@ -106,6 +106,8 @@ function collectables.draw()
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
     elseif collectable.image == argentina_image then
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.7, 0.8)
+    elseif collectable.image == blog_image or collectable.image == website_image then 
+      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.4, 0.4)
     else 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5) 
     end 
