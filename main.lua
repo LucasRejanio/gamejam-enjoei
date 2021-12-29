@@ -9,7 +9,8 @@ Game = {
     height = 256,
     scale = 3.5,
     scene = "menu",
-    selected_avatar = 1
+    selected_avatar = 1,
+    highscore = 0
 }
 
 assets = {}
@@ -21,6 +22,7 @@ function love.load()
     menu.load(Game)
     character_selection.load(assets)
     game.load()
+    game_over.load()
 end
 
 function love.draw()
