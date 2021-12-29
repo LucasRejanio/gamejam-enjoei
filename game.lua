@@ -5,6 +5,8 @@ game = {
 
 scale = 3.5
 
+bg_position = 0
+
 player = {
   height = 32 * scale,
   width = 32 * scale,
@@ -29,13 +31,16 @@ function game.load()
   end
 
   background = love.graphics.newImage("img/backgrounds/background.png")
+  background:setWrap('repeat', 'clampzero')
 
   player.x = 0
   player.y = love.graphics.getHeight() - player.height - (55 * scale)
 end
 
 function game.draw()
-  love.graphics.draw(background, 0, 0, 0)
+  sx = love.graphics:getWidth() / background:getWidth()
+  sy = love.graphics:getHeight() / background:getHeight()
+  love.graphics.draw(background, bg_scroll, 0, 0, 0, sx, sy)
   player_width = player.width
   player_height = player.height
 
@@ -52,6 +57,12 @@ end
 spacePressed = false
 
 function game.update(dt)
+  bg_position = bg_position - 1
+  bg_w = background:getWidth()
+  bg_h = background:getHeight()
+
+  bg_scroll = love.graphics.newQuad(-bg_position, 2, bg_w, bg_h, bg_w, bg_h)
+
   player.avatar_current_frame = player.avatar_current_frame + 10 * dt
   if player.avatar_current_frame >= 6 then
     player.avatar_current_frame = 1
