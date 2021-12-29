@@ -13,7 +13,7 @@ function merlin_bad_ending.draw()
   love.graphics.print(text, 300, 30)
   love.graphics.setColor(1, 1, 1)
   love.graphics.draw(assets.moises, 1047, Game.height * Game.scale - 235)
-  love.graphics.draw(merlin_bad_ending.image, 1047, Game.height * Game.scale - 235)
+  love.graphics.draw(merlin_bad_ending.image, 380, 300)
   
   if game.song:isPlaying() then
     game.song:stop()
