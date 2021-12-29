@@ -1,18 +1,20 @@
 achievements = {}
 
 goals = {
-  { year = 2010, done = false, goal = 1 },
-  { year = 2011, done = false, goal = 2 },
-  { year = 2012, done = false, goal = 3 },
-  { year = 2013, done = false, goal = 20 },
-  { year = 2014, done = false, goal = 25 },
-  { year = 2015, done = false, goal = 30 },
-  --{ year = 2009, done = false, goal = 5 }
-  --{ year = 2009, done = false, goal = 5 }
-  --{ year = 2009, done = false, goal = 5 }
-  --{ year = 2009, done = false, goal = 5 }
-  --{ year = 2009, done = false, goal = 5 }
-  final_cutscene = { done = false, goal = 40 }
+  { year = 2010, done = false, goal = 3, difficulty = 0 },
+  { year = 2011, done = false, goal = 7, difficulty = 1 },
+  { year = 2012, done = false, goal = 12, difficulty = 2 },
+  { year = 2013, done = false, goal = 16, difficulty = 3 },
+  { year = 2014, done = false, goal = 23, difficulty = 3 },
+  { year = 2015, done = false, goal = 29, difficulty = 3 },
+  { year = 2016, done = false, goal = 35, difficulty = 0 },
+  { year = 2017, done = false, goal = 40, difficulty = 1 },
+  { year = 2018, done = false, goal = 45, difficulty = 2 },
+  { year = 2019, done = false, goal = 50, difficulty = 3 },
+  { year = 2020, done = false, goal = 55, difficulty = 3 },
+  { year = 2021, done = false, goal = 60, difficulty = 3 },
+  { year = 2025, done = false, goal = 70, difficulty = 4 },
+  { year = 2030, done = false, goal = 80, difficulty = 4 }
 }
 
 goal_display = false
@@ -22,6 +24,7 @@ goal_display_seconds = 2
 function achievements.check_for_achievement(score)
   for i, goal in ipairs(goals) do
     if score == goal.goal then
+      game.difficulty = goal.difficulty
       game.current_year = goal.year
       goal.done = true
       goal_display = true

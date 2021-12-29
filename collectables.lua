@@ -1,3 +1,5 @@
+require "achievements"
+
 time_between_spawns = 3
 spawn_timer = 0
 
@@ -57,6 +59,8 @@ function collectables.update(dt, player)
       table.remove(onscreen_collectables, i)
     end
   end
+
+  check_speed()
 end
 
 function collectables.draw()
@@ -67,9 +71,12 @@ end
 
 function collectables.reset_collectables()
   onscreen_collectables = {}
+  collectable_speed = 2
+  time_between_spawns = 3
 end
 
 function random_type()
+  collectable_types = 
   return collectable_types[ math.random( #collectable_types ) ]
 end
 
@@ -141,4 +148,23 @@ function play_collectable_sfx()
   collectable_sfx:setLooping(false)
   collectable_sfx:setVolume(0.4)
   collectable_sfx:play()
+end
+
+function check_speed()
+  if game.difficulty == 0 then
+    collectable_speed = 2
+    time_between_spawns = 3
+  elseif game.difficulty == 1 then
+    collectable_speed = 4
+    time_between_spawns = 2
+  elseif game.difficulty == 2 then
+    collectable_speed = 6
+    time_between_spawns = 1
+  elseif game.difficulty == 3 then
+    collectable_speed = 8
+    time_between_spawns = 0.5
+  elseif game.difficulty == 4 then
+    collectable_speed = 10
+    time_between_spawns = 0.3
+  end
 end

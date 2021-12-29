@@ -7,6 +7,7 @@ game = {
   current_score = 0,
   current_lives = starting_lives,
   current_year = 2009,
+  difficulty = 0,
   song = love.audio.newSource("audio/game_sound.mp3", "static")
 }
 
@@ -48,6 +49,8 @@ function game.load()
   background = love.graphics.newImage("img/backgrounds/bg-yellow.png")
   background:setWrap('repeat', 'clampzero')
 
+  background_speed = 2.3
+
   player.x = 0
   player.y = love.graphics.getHeight() - player.height - (55 * scale)
 end
@@ -57,7 +60,7 @@ function game.draw()
 
   sx = love.graphics:getWidth() / background:getWidth()
   sy = love.graphics:getHeight() / background:getHeight()
-  bg_scroll:setViewport(-bg_position * 2.3, 0, background:getWidth(), background:getHeight())
+  bg_scroll:setViewport(-bg_position * background_speed, 0, background:getWidth(), background:getHeight())
   love.graphics.draw(background, bg_scroll, 0, 0, 0, sx, sy)
   
   player_width = player.width
@@ -91,10 +94,13 @@ end
 spacePressed = false
 
 function game.update(dt)
+  print(game.difficulty)
+
   if new_game then
     game.current_lives = starting_lives
     game.current_score = 0
     game.current_year = 2009
+    game.difficulty = 0
     collectables.reset_collectables()
 
     new_game = false
@@ -103,6 +109,8 @@ function game.update(dt)
   collectables.update(dt, player)
   achievements.update(dt)
   
+  check_background_speed()
+
   bg_position = bg_position - 1
   bg_w = background:getWidth()
   bg_h = background:getHeight()
@@ -142,5 +150,19 @@ function game.update(dt)
     game.song:setVolume(0.3)
     game.song:play()
     playing_music = true
+  end
+end
+
+function check_background_speed()
+  if game.difficulty == 0 then
+    background_speed = 2.5
+  elseif game.difficulty == 1 then
+    background_speed = 4
+  elseif game.difficulty == 2 then
+    background_speed = 6
+  elseif game.difficulty == 3 then
+    background_speed = 8
+  elseif game.difficulty == 4 then
+    background_speed = 10
   end
 end
