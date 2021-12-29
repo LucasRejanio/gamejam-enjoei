@@ -1,20 +1,14 @@
 achievements = {}
 
 goals = {
-  { year = 2010, done = false, goal = 3, difficulty = 0 },
-  { year = 2011, done = false, goal = 7, difficulty = 1 },
-  { year = 2012, done = false, goal = 12, difficulty = 2 },
-  { year = 2013, done = false, goal = 16, difficulty = 3 },
-  { year = 2014, done = false, goal = 23, difficulty = 3 },
-  { year = 2015, done = false, goal = 29, difficulty = 3 },
-  { year = 2016, done = false, goal = 35, difficulty = 0 },
-  { year = 2017, done = false, goal = 40, difficulty = 1 },
-  { year = 2018, done = false, goal = 45, difficulty = 2 },
-  { year = 2019, done = false, goal = 50, difficulty = 3 },
-  { year = 2020, done = false, goal = 55, difficulty = 3 },
-  { year = 2021, done = false, goal = 60, difficulty = 3 },
-  { year = 2025, done = false, goal = 70, difficulty = 4 },
-  { year = 2030, done = false, goal = 80, difficulty = 4 }
+  { year = 2012, done = false, goal = 5, difficulty = 1 },
+  { year = 2015, done = false, goal = 10, difficulty = 1 },
+  { year = 2015, done = false, goal = 15, difficulty = 2 },
+  { year = 2017, done = false, goal = 25, difficulty = 2 },
+  { year = 2020, done = false, goal = 35, difficulty = 3 },
+  { year = 2021, done = false, goal = 45, difficulty = 3 },
+  { year = 2025, done = false, goal = 55, difficulty = 4 },
+  { year = 2030, done = false, goal = 60, difficulty = 4 }
 }
 
 goal_display = false
@@ -29,6 +23,7 @@ function achievements.check_for_achievement(score)
       goal.done = true
       achievements.goal_display = true
       goal_display_timer = 0
+      set_collectable_types(game.current_year)
     end
   end
 end

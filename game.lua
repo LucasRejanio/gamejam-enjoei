@@ -51,6 +51,12 @@ function game.load()
 
   background_speed = 2.3
 
+  bg_position = bg_position - 1
+  bg_w = background:getWidth()
+  bg_h = background:getHeight()
+
+  bg_scroll = love.graphics.newQuad(-bg_position, -1, bg_w, bg_h, bg_w, bg_h)
+
   player.x = 0
   player.y = love.graphics.getHeight() - player.height - (55 * scale)
 end
@@ -155,14 +161,14 @@ end
 
 function check_background_speed()
   if game.difficulty == 0 then
-    background_speed = 2.5
+    background_speed = 2
   elseif game.difficulty == 1 then
-    background_speed = 4
+    background_speed = 3.5
   elseif game.difficulty == 2 then
-    background_speed = 6
+    background_speed = 5
   elseif game.difficulty == 3 then
-    background_speed = 8
+    background_speed = 6.5
   elseif game.difficulty == 4 then
-    background_speed = 10
+    background_speed = 8
   end
 end
