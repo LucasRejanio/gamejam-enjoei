@@ -3,7 +3,7 @@ require "achievements"
 time_between_spawns = 3
 spawn_timer = 0
 
-collectable_types = {"bug", "dindin", "argentina"}
+collectable_types = {"bug", "dindin", "argentina", "maneki"}
 --collectable_types = {"bug", "dindin", "bolsa", "brilhou", "celular", "argentina", "cupom"}
 collectables = {}
 onscreen_collectables = {}
@@ -15,9 +15,11 @@ function collectables.load()
   dindin_image = love.graphics.newImage("img/objects/cash.png")
   argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
   argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
+  maneki_neeko_image = love.graphics.newImage("img/objects/maneki_neeko.png")
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
+  maneki_sfx = love.audio.newSource("audio/maneki_sound.mp3", "static")
 
   collectables["bug"] = {
     image = bug_image,
@@ -36,6 +38,12 @@ function collectables.load()
     cw = argentina_image:getWidth(),
     ch = argentina_image:getHeight(),
     fn = collectable_fn
+  }
+  collectables["maneki"] = {
+    image = maneki_neeko_image,
+    cw = maneki_neeko_image:getWidth(),
+    ch = maneki_neeko_image:getHeight(),
+    fn = maneki_fn
   }
 end
 
@@ -66,7 +74,12 @@ end
 
 function collectables.draw()
   for i, collectable in ipairs(onscreen_collectables) do
-    love.graphics.draw(collectable.image, collectable.x, collectable.y, 0)
+    if collectable.image == maneki_neeko_image then
+      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
+    else 
+      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0)  
+    end
+    
   end
 end
 
@@ -77,7 +90,17 @@ function collectables.reset_collectables()
 end
 
 function random_type()
-  return collectable_types[ math.random( #collectable_types ) ]
+  type = collectable_types[ math.random( #collectable_types ) ]
+  if type == "maneki" then
+    if achievements.goal_display then
+      achievements.goal_display = false
+      return type
+    else
+      return random_type()
+    end
+  else 
+    return type
+  end
 end
 
 function spawn_collectable(collectable_type)
@@ -138,6 +161,11 @@ function collectable_fn()
   print("pegou um dindin!")
 end
 
+function maneki_fn()
+  game.current_lives = game.current_lives + 1
+  play_maneki_sfx()
+end
+
 function play_bug_sfx()
   bug_sfx:setLooping(false)
   bug_sfx:setVolume(0.4)
@@ -148,6 +176,12 @@ function play_collectable_sfx()
   collectable_sfx:setLooping(false)
   collectable_sfx:setVolume(0.4)
   collectable_sfx:play()
+end
+
+function play_maneki_sfx()
+  maneki_sfx:setLooping(false)
+  maneki_sfx:setVolume(0.4)
+  maneki_sfx:play()
 end
 
 function check_speed()

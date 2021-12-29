@@ -27,7 +27,7 @@ function achievements.check_for_achievement(score)
       game.difficulty = goal.difficulty
       game.current_year = goal.year
       goal.done = true
-      goal_display = true
+      achievements.goal_display = true
       goal_display_timer = 0
     end
   end
