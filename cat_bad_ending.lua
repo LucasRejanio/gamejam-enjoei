@@ -2,18 +2,15 @@ cat_bad_ending = {}
 cat_timer = 0
 
 function cat_bad_ending.load()
-  cat_font = love.graphics.newFont(35)
   cat_bad_ending.image = love.graphics.newImage('img/ending/cat_game_over.png')
+  cat_bad_ending.not_working_image = love.graphics.newImage('img/ending/not_working.png')
 end
 
 function cat_bad_ending.draw()
-  love.graphics.setColor(0, 0, 0)
-  love.graphics.setFont(cat_font)
-  text = "ops, deu algum xabu na internet"
-  love.graphics.print(text, 310, 80)
   love.graphics.setColor(1, 1, 1)
   love.graphics.draw(assets.moises, 1047, Game.height * Game.scale - 235)
-  love.graphics.draw(cat_bad_ending.image, Game.width + 20, 180)
+  love.graphics.draw(cat_bad_ending.not_working_image, 430, 100)
+  love.graphics.draw(cat_bad_ending.image, Game.width + 20, 230)
   
   if game.song:isPlaying() then
     game.song:stop()
