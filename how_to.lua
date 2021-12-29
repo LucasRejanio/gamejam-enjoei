@@ -1,6 +1,7 @@
 how_to = {}
 
 function how_to.load()
+    font = love.graphics.newFont(32)
     how_to.spacebar_sprite = love.graphics.newImage("img/how_to/spacebar.png")
     how_to.left_arrow = love.graphics.newImage("img/how_to/seta-esquerda.png")
     how_to.right_arrow = love.graphics.newImage("img/how_to/seta-direita.png")
@@ -8,6 +9,7 @@ end
 
 function how_to.draw()
 
+    draw_how_to_button(Game)
     
     --spacebar sprite
     spacebar_scale = 4
@@ -55,4 +57,72 @@ end
 
 function how_to.update()
 
+end
+
+
+function draw_how_to_button(Game)
+    local ww = love.graphics.getWidth()
+    local wh = love.graphics.getHeight()
+
+    local button = {
+        width = (Game.width*Game.scale) / 3,
+        height = 64,
+        text = "Voltar",
+        last = false,
+        now = false
+    }
+    
+    button.last = button.now
+
+    local bx = (ww * 0.5) - (button.width * 0.5)
+    local by = (wh) - (button.height * 1.1)
+
+    local button_color = {1.0, 0.83, 0.87, 1}
+
+    local mx, my = love.mouse.getPosition() 
+
+    local hot = mx > bx and mx < bx + button.width and
+                my > by and my < by + button.height
+
+    if hot then
+      button_color = {1, 1, 1, 1}
+    end
+
+    button.now = love.mouse.isDown(1)
+    if hot and button.now and not button.last then
+      new_game = true
+      Game.scene = "menu"
+      Game.selected_avatar = character_selection.selected_avatar
+      print("selected avatar: " .. character_selection.selected_avatar)
+    end
+
+    love.graphics.setColor(unpack(button_color))
+    love.graphics.rectangle(
+      "fill",
+      bx,
+      by,
+      button.width,
+      button.height
+    )
+    love.graphics.setColor(0.35, 0.2, 0.2)
+    love.graphics.rectangle(
+      "line",
+      bx,
+      by,
+      button.width,
+      button.height
+    )
+
+    local textW = font:getWidth(button.text)
+    local textH = font:getHeight(button.text)
+
+    love.graphics.setColor(0.35, 0.2, 0.2)
+    love.graphics.print(
+      button.text,
+      font,
+      (ww * 0.5) - textW * 0.5,
+      by + (button.height * 0.5) - (textH * 0.5)
+    )
+
+    love.graphics.setColor(1, 1, 1)
 end
