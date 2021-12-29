@@ -1,7 +1,7 @@
 # gamejam-enjoei
 Hackathon 2021 enjoei.
 
-![game](https://user-images.githubusercontent.com/52427398/147694575-45e0e3bf-7281-400c-a00f-a914c466b4e2.png)
+![player](https://user-images.githubusercontent.com/52427398/147694940-edc2b841-309d-46ef-b708-1d2a2696049d.png)
 
 ## Objetivo 🚀
 O objetivo do mega game é coletar o máximo de memórias do nosso querido enjoei, sejam elas positivas ou negativas. As memórias positivas acumulam pontos como quem conta um conto, enquanto os terríveis bugs acabam com sua festa na fenda do biquini.
