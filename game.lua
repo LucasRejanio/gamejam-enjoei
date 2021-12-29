@@ -88,7 +88,7 @@ function game.update(dt)
   --Audio
   if playing_music == false then
     print("PLAY AUDIO")
-    game.song = love.audio.newSource("audio/game_sound.wav", "static")
+    game.song = love.audio.newSource("audio/game_sound.mp3", "static")
     game.song:setLooping(true)
     game.song:setVolume(0.3)
     game.song:play()
