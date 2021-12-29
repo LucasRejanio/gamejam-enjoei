@@ -1,6 +1,6 @@
 require "achievements"
 
-time_between_spawns = 3
+time_between_spawns = 1
 spawn_timer = 0
 
 collectable_types = {"bug", "dindin", "argentina", "maneki"}
@@ -41,8 +41,8 @@ function collectables.load()
   }
   collectables["maneki"] = {
     image = maneki_neeko_image,
-    cw = maneki_neeko_image:getWidth(),
-    ch = maneki_neeko_image:getHeight(),
+    cw = maneki_neeko_image:getWidth()*0.1,
+    ch = maneki_neeko_image:getHeight()*0.1,
     fn = maneki_fn
   }
 end
@@ -82,7 +82,6 @@ function collectables.draw()
     else 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5)  
     end
-    
   end
 end
 
