@@ -69,7 +69,7 @@ function character_selection.update(dt)
             if (character_selection.selected_avatar == 1) then
                 character_selection.selected_avatar = 4
             else
-                character_selection.selected_avatar = character_selection.selected_avatar-1    
+                character_selection.selected_avatar = character_selection.selected_avatar-1
             end
             timer_counter = 0
         end
@@ -78,9 +78,16 @@ function character_selection.update(dt)
             if (character_selection.selected_avatar == 4) then
                 character_selection.selected_avatar = 1
             else
-                character_selection.selected_avatar = character_selection.selected_avatar+1    
+                character_selection.selected_avatar = character_selection.selected_avatar+1
             end
             timer_counter = 0
+        end
+
+        if love.keyboard.isDown("kpenter") or love.keyboard.isDown("return") then
+            Game.selected_avatar = character_selection.selected_avatar
+            print("selected avatar: " .. character_selection.selected_avatar)
+            new_game = true
+            Game.scene = "game"
         end
     end
 end
@@ -96,7 +103,7 @@ function drawButton(Game)
         last = false,
         now = false
     }
-    
+
     button.last = button.now
 
     local bx = (ww * 0.5) - (button.width * 0.5)
@@ -104,7 +111,7 @@ function drawButton(Game)
 
     local button_color = {1.0, 0.83, 0.87, 1}
 
-    local mx, my = love.mouse.getPosition() 
+    local mx, my = love.mouse.getPosition()
 
     local hot = mx > bx and mx < bx + button.width and
                 my > by and my < by + button.height
