@@ -155,14 +155,14 @@ end
 
 function check_background_speed()
   if game.difficulty == 0 then
-    background_speed = 2.5
+    background_speed = 2
   elseif game.difficulty == 1 then
-    background_speed = 4
+    background_speed = 3.5
   elseif game.difficulty == 2 then
-    background_speed = 6
+    background_speed = 5
   elseif game.difficulty == 3 then
-    background_speed = 8
+    background_speed = 6.5
   elseif game.difficulty == 4 then
-    background_speed = 10
+    background_speed = 8
   end
 end

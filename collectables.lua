@@ -3,8 +3,8 @@ require "achievements"
 time_between_spawns = 3
 spawn_timer = 0
 
-collectable_types = {"bug", "dindin", "argentina", "maneki"}
---collectable_types = {"bug", "dindin", "bolsa", "brilhou", "celular", "argentina", "cupom"}
+collectable_types = {}
+
 collectables = {}
 onscreen_collectables = {}
 
@@ -12,10 +12,19 @@ collectable_speed = 2
 
 function collectables.load()
   bug_image = love.graphics.newImage("img/objects/bug.png")
-  dindin_image = love.graphics.newImage("img/objects/cash.png")
-  argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
+  cash_image = love.graphics.newImage("img/objects/cash.png")
+  coin_image = love.graphics.newImage("img/objects/coin.png")
+  cupom_image = love.graphics.newImage("img/objects/cupom.png")
+  blog_image = love.graphics.newImage("img/objects/2009-blog.png")
+  website_image = love.graphics.newImage("img/objects/2012-website.png")
   argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
   maneki_neeko_image = love.graphics.newImage("img/objects/maneki_neeko.png")
+  android_image = love.graphics.newImage("img/objects/2015-android.png")
+  iphone_image = love.graphics.newImage("img/objects/2015-iphone.png")
+  wphone_image = love.graphics.newImage("img/objects/2015-wphone.png")
+  ipo_image = love.graphics.newImage("img/objects/2020-ipo.png")
+  bag_pink_image = love.graphics.newImage("img/objects/2021-bag-pink.png")
+  bag_red_image = love.graphics.newImage("img/objects/2021-bag-red.png")
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
@@ -27,23 +36,41 @@ function collectables.load()
     ch = bug_image:getHeight(),
     fn = bug_fn
   }
-  collectables["dindin"] = {
-    image = dindin_image,
-    cw = dindin_image:getWidth(),
-    ch = dindin_image:getHeight(),
-    fn = collectable_fn
-  }
-  collectables["argentina"] = {
-    image = argentina_image,
-    cw = argentina_image:getWidth(),
-    ch = argentina_image:getHeight(),
-    fn = collectable_fn
-  }
+  collectables["cash"] = make_collectable(cash_image)
+  collectables["coin"] = make_collectable(coin_image)
+  collectables["cupom"] = make_collectable(cupom_image)
+
+  collectables["blog"] = make_collectable(blog_image)
+
+  collectables["website"] = make_collectable(website_image)
+
+  collectables["argentina"] = make_collectable(argentina_image)
+
+  collectables["android"] = make_collectable(android_image)
+  collectables["iphone"] = make_collectable(iphone_image)
+  collectables["wphone"] = make_collectable(wphone_image)
+
+  collectables["ipo"] = make_collectable(ipo_image)
+
+  collectables["bag_pink"] = make_collectable(bag_pink_image)
+  collectables["bag_red"] = make_collectable(bag_red_image)
+  
   collectables["maneki"] = {
     image = maneki_neeko_image,
     cw = maneki_neeko_image:getWidth(),
     ch = maneki_neeko_image:getHeight(),
     fn = maneki_fn
+  }
+
+  types_2009()
+end
+
+function make_collectable(image)
+  return {
+    image = image,
+    cw = image:getWidth(),
+    ch = image:getHeight(),
+    fn = collectable_fn
   }
 end
 
@@ -87,6 +114,7 @@ end
 
 function collectables.reset_collectables()
   onscreen_collectables = {}
+  types_2009()
   collectable_speed = 2
   time_between_spawns = 3
 end
@@ -160,7 +188,6 @@ function collectable_fn()
   game.current_score = game.current_score + 1
   achievements.check_for_achievement(game.current_score)
   play_collectable_sfx()
-  print("pegou um dindin!")
 end
 
 function maneki_fn()
@@ -189,18 +216,47 @@ end
 function check_speed()
   if game.difficulty == 0 then
     collectable_speed = 2
-    time_between_spawns = 3
-  elseif game.difficulty == 1 then
-    collectable_speed = 4
     time_between_spawns = 2
-  elseif game.difficulty == 2 then
-    collectable_speed = 6
+  elseif game.difficulty == 1 then
+    collectable_speed = 3
     time_between_spawns = 1
+  elseif game.difficulty == 2 then
+    collectable_speed = 4
+    time_between_spawns = 0.6
   elseif game.difficulty == 3 then
-    collectable_speed = 8
-    time_between_spawns = 0.5
-  elseif game.difficulty == 4 then
-    collectable_speed = 10
+    collectable_speed = 5
     time_between_spawns = 0.3
+  elseif game.difficulty == 4 then
+    collectable_speed = 6
+    time_between_spawns = 0.15
   end
+end
+
+function set_collectable_types(year)
+  reset_types()
+
+  
+  if year == 2012 then
+    table.insert(collectable_types, "website")
+  elseif year == 2015 then
+    table.insert(collectable_types, "bug")
+    table.insert(collectable_types, "android")
+    table.insert(collectable_types, "iphone")
+    table.insert(collectable_types, "wphone")
+  elseif year == 2017 then
+    table.insert(collectable_types, "argentina")
+  elseif year == 2020 then
+    table.insert(collectable_types, "ipo")
+  elseif year == 2021 then
+    table.insert(collectable_types, "bag_pink")
+    table.insert(collectable_types, "bag_red")
+  end
+end
+
+function reset_types()
+  collectable_types = {"bug", "bug", "cash", "coin", "cupom", "maneki"}
+end
+
+function types_2009()
+  collectable_types = {"bug", "bug", "cash", "coin", "cupom", "maneki", "blog"}
 end
