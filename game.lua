@@ -1,6 +1,9 @@
 game = {
   current_score = 0,
-  current_lives = 3
+  current_lives = 3,
+  song = love.audio.newSource("audio/game_sound.mp3", "static"),
+  bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static"),
+  collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
 }
 
 scale = 3.5
@@ -74,6 +77,8 @@ function game.update(dt)
   if (love.keyboard.isDown("space") and timer_counter < 0.3) then
     player.vely = -18
     timer_counter = timer_counter + dt
+
+    spacePressed = true
   end
 
   player.vely = player.vely + 1
@@ -82,13 +87,17 @@ function game.update(dt)
   if player.y > maxY then
     player.y = maxY
     timer_counter = 0
+
+    if spacePressed then
+      play_bug_sfx()
+      spacePressed = false
+    end
   end
 
   
   --Audio
   if playing_music == false then
     print("PLAY AUDIO")
-    game.song = love.audio.newSource("audio/game_sound.mp3", "static")
     game.song:setLooping(true)
     game.song:setVolume(0.3)
     game.song:play()
@@ -127,6 +136,7 @@ function object_collided(isBug)
   --Se for bug
   if isBug then
     game.current_lives = game.current_lives - 1
+    play_bug_sfx()
     if game.current_lives == 0 then
       Game.scene = "game_over"
     end
@@ -134,5 +144,18 @@ function object_collided(isBug)
   --Se nao for bug
   else 
     game.current_score = game.current_score + 1
+    play_collectable_sfx()
   end
+end
+
+function play_bug_sfx()
+  game.bug_sfx:setLooping(false)
+  game.bug_sfx:setVolume(0.4)
+  game.bug_sfx:play()
+end
+
+function play_collectable_sfx()
+  game.collectable_sfx:setLooping(false)
+  game.collectable_sfx:setVolume(0.4)
+  game.collectable_sfx:play()
 end
