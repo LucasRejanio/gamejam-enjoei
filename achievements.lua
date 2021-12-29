@@ -18,6 +18,10 @@ goal_display_seconds = 2
 
 function achievements.check_for_achievement(score)
   for i, goal in ipairs(goals) do
+    if score == 1 then
+      Game.scene = "ending"
+    end
+
     if score == goal.goal then
       game.difficulty = goal.difficulty
       game.current_year = goal.year

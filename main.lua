@@ -4,6 +4,7 @@ require("game")
 require("character_selection")
 require("cat_bad_ending")
 require("merlin_bad_ending")
+require("ending")
 require("game_over")
 require("how_to")
 
@@ -21,7 +22,8 @@ assets = {
 }
 
 songs = {
-    game_over = love.audio.newSource("audio/game_over.wav", "static")
+    game_over = love.audio.newSource("audio/game_over.wav", "static"),
+    ending = love.audio.newSource("audio/ending.wav", "static")
 }
 
 function love.load()
@@ -36,6 +38,7 @@ function love.load()
     merlin_bad_ending.load()
     game_over.load()
     how_to.load()
+    ending.load()
 end
 
 function love.draw()
@@ -59,6 +62,8 @@ function love.draw()
             cat_bad_ending.draw()
         elseif Game.scene == "merlin_bad_ending" then
             merlin_bad_ending.draw()
+        elseif Game.scene == "ending" then
+            ending.draw()
         end
     end
 end
@@ -81,6 +86,8 @@ function love.update(dt)
             cat_bad_ending.update(dt)
         elseif Game.scene == "merlin_bad_ending" then
             merlin_bad_ending.update(dt)
+        elseif Game.scene == "ending" then
+            ending.update(dt)
         end
     end
 end
