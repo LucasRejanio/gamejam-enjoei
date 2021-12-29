@@ -1,6 +1,6 @@
 require "achievements"
 
-time_between_spawns = 3
+time_between_spawns = 1
 spawn_timer = 0
 
 collectable_types = {}
@@ -25,6 +25,7 @@ function collectables.load()
   ipo_image = love.graphics.newImage("img/objects/2020-ipo.png")
   bag_pink_image = love.graphics.newImage("img/objects/2021-bag-pink.png")
   bag_red_image = love.graphics.newImage("img/objects/2021-bag-red.png")
+
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
@@ -57,8 +58,8 @@ function collectables.load()
   
   collectables["maneki"] = {
     image = maneki_neeko_image,
-    cw = maneki_neeko_image:getWidth(),
-    ch = maneki_neeko_image:getHeight(),
+    cw = maneki_neeko_image:getWidth()*0.1,
+    ch = maneki_neeko_image:getHeight()*0.1,
     fn = maneki_fn
   }
 
@@ -105,10 +106,10 @@ function collectables.draw()
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
     elseif collectable.image == argentina_image then
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.7, 0.8)
+    elseif collectable.image == 
     else 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5)  
     end
-    
   end
 end
 
