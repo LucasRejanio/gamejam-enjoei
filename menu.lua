@@ -37,8 +37,7 @@ function menu.load(Game)
   table.insert(buttons, newButton(
     "Instruções",
     function()
-      print("Desenvolver how to")
-      -- Game.scene = "character_selection"
+      Game.scene = "how_to"
     end
   ))
   table.insert(buttons, newButton(

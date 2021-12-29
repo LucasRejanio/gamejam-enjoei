@@ -3,6 +3,7 @@ require("menu")
 require("game")
 require("character_selection")
 require("game_over")
+require("how_to")
 
 Game = {
     width = 352,
@@ -24,6 +25,7 @@ function love.load()
     character_selection.load(assets)
     game.load()
     game_over.load()
+    how_to.load()
 end
 
 function love.draw()
@@ -41,6 +43,8 @@ function love.draw()
             game.draw()
         elseif Game.scene == "game_over" then
             game_over.draw()
+        elseif Game.scene == "how_to" then
+            how_to.draw()
         end
     end
 end
@@ -57,6 +61,8 @@ function love.update(dt)
             game.update(dt)
         elseif Game.scene == "game_over" then
             game_over.update(dt)
+        elseif Game.scene == "how_to" then
+            how_to.update(dt)
         end
     end
 end
