@@ -16,6 +16,7 @@ player = {
 }
 
 timer_counter = 0
+playing_music = false
 
 function game.load()
 
@@ -82,6 +83,19 @@ function game.update(dt)
     player.y = maxY
     timer_counter = 0
   end
+
+  
+  --Audio
+  if playing_music == false then
+    print("PLAY AUDIO")
+    game.song = love.audio.newSource("audio/game_sound.wav", "static")
+    game.song:setLooping(true)
+    game.song:setVolume(0.3)
+    game.song:play()
+    playing_music = true
+  end
+  
+
   -- if player.x < 0 then
   --   player.x = 0
   -- end
