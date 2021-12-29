@@ -14,8 +14,8 @@ function collectables.load()
   bug_image = love.graphics.newImage("img/objects/bug.png")
   dindin_image = love.graphics.newImage("img/objects/cash.png")
   argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
-  argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
   maneki_neeko_image = love.graphics.newImage("img/objects/maneki_neeko.png")
+
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
@@ -78,6 +78,7 @@ function collectables.draw()
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
     elseif collectable.image == argentina_image then
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.7, 0.8)
+    elseif collectable.image == 
     else 
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5)  
     end
