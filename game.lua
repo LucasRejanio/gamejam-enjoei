@@ -65,7 +65,7 @@ function game.update(dt)
   bg_w = background:getWidth()
   bg_h = background:getHeight()
 
-  bg_scroll = love.graphics.newQuad(-bg_position, 2, bg_w, bg_h, bg_w, bg_h)
+  bg_scroll = love.graphics.newQuad(-bg_position, -1, bg_w, bg_h, bg_w, bg_h)
 
   player.avatar_current_frame = player.avatar_current_frame + 10 * dt
   if player.avatar_current_frame >= 6 then
