@@ -76,8 +76,10 @@ function collectables.draw()
   for i, collectable in ipairs(onscreen_collectables) do
     if collectable.image == maneki_neeko_image then
       love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.1, 0.1)
+    elseif collectable.image == argentina_image then
+      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 0.7, 0.8)
     else 
-      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0)  
+      love.graphics.draw(collectable.image, collectable.x, collectable.y, 0, 1.5, 1.5)  
     end
     
   end
