@@ -1,14 +1,15 @@
 achievements = {}
 
 goals = {
-  { year = 2012, done = false, goal = 5, difficulty = 1 },
+  { year = 2012, done = false, goal = 5, difficulty = 0 },
   { year = 2015, done = false, goal = 10, difficulty = 1 },
-  { year = 2015, done = false, goal = 15, difficulty = 2 },
+  { year = 2015, done = false, goal = 15, difficulty = 1 },
   { year = 2017, done = false, goal = 25, difficulty = 2 },
-  { year = 2020, done = false, goal = 35, difficulty = 3 },
-  { year = 2021, done = false, goal = 45, difficulty = 3 },
-  { year = 2025, done = false, goal = 55, difficulty = 4 },
-  { year = 2030, done = false, goal = 60, difficulty = 4 }
+  { year = 2018, done = false, goal = 35, difficulty = 2 },
+  { year = 2020, done = false, goal = 45, difficulty = 3 },
+  { year = 2021, done = false, goal = 55, difficulty = 3 },
+  { year = 2025, done = false, goal = 65, difficulty = 4 },
+  { year = 2030, done = false, goal = 70, difficulty = 4 }
 }
 
 goal_display = false
