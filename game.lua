@@ -39,7 +39,7 @@ function game.load()
     end
   end
 
-  background = love.graphics.newImage("img/backgrounds/background.png")
+  background = love.graphics.newImage("img/backgrounds/bg-yellow.png")
   background:setWrap('repeat', 'clampzero')
 
   player.x = 0
