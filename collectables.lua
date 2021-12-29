@@ -11,7 +11,7 @@ collectable_speed = 2
 function collectables.load()
   bug_image = love.graphics.newImage("img/objects/bug.png")
   dindin_image = love.graphics.newImage("img/objects/cash.png")
-  argentina_image = love.graphics.newImage("img/objects/argentina.png")
+  argentina_image = love.graphics.newImage("img/objects/2017-argentina.png")
 
   bug_sfx = love.audio.newSource("audio/bug_sfx.wav", "static")
   collectable_sfx = love.audio.newSource("audio/collectable_sfx.wav", "static")
