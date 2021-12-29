@@ -2,6 +2,8 @@ require("opening")
 require("menu")
 require("game")
 require("character_selection")
+require("cat_bad_ending")
+require("merlin_bad_ending")
 require("game_over")
 require("how_to")
 
@@ -14,7 +16,13 @@ Game = {
     highscore = 0
 }
 
-assets = {}
+assets = {
+    moises = love.graphics.newImage('img/ending/moises.png')
+}
+
+songs = {
+    game_over = love.audio.newSource("audio/game_over.wav", "static")
+}
 
 function love.load()
     love.window.setMode(Game.width * Game.scale, Game.height * Game.scale)
@@ -24,6 +32,8 @@ function love.load()
     menu.load(Game)
     character_selection.load(assets)
     game.load()
+    cat_bad_ending.load()
+    merlin_bad_ending.load()
     game_over.load()
     how_to.load()
 end
@@ -45,6 +55,10 @@ function love.draw()
             game_over.draw()
         elseif Game.scene == "how_to" then
             how_to.draw()
+        elseif Game.scene == "cat_bad_ending" then
+            cat_bad_ending.draw()
+        elseif Game.scene == "merlin_bad_ending" then
+            merlin_bad_ending.draw()
         end
     end
 end
@@ -63,6 +77,10 @@ function love.update(dt)
             game_over.update(dt)
         elseif Game.scene == "how_to" then
             how_to.update(dt)
+        elseif Game.scene == "cat_bad_ending" then
+            cat_bad_ending.update(dt)
+        elseif Game.scene == "merlin_bad_ending" then
+            merlin_bad_ending.update(dt)
         end
     end
 end

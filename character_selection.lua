@@ -60,6 +60,9 @@ function drawAvatars(index)
 end
 
 function character_selection.update(dt)
+    if songs.game_over:isPlaying() then
+        songs.game_over:stop()
+    end
 
     timer_counter = timer_counter + dt
 

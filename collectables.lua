@@ -182,7 +182,11 @@ function bug_fn()
   play_bug_sfx()
   
   if game.current_lives <= 0 then
-    Game.scene = "game_over"
+    if game.current_year < 2013 then
+      Game.scene = "cat_bad_ending"
+    else
+      Game.scene = "merlin_bad_ending"
+    end
   end
 end
 
